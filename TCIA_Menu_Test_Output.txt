@@ -1,0 +1,330 @@
+Microsoft Windows [Version 6.1.7601]
+
+hilfikerp@FR-N-S079396 C:\tcia
+> cd ..
+
+hilfikerp@FR-N-S079396 C:\
+> cd temp
+
+hilfikerp@FR-N-S079396 C:\temp
+> echo %TCIA_HOME%
+C:\tcia
+
+hilfikerp@FR-N-S079396 C:\temp
+> python C:\workspace\TCIA-API-SDK-master\tcia-rest-client-python\src\menu.py
+
+
+Welcome to the TCIA Request Application.
+Please refer to the ReadMe file for useful tips on how to simplify repetitive requests.
+
+
+Please supply an API_KEY to access the TCIA data (Press <Enter> key to load from properties file):
+
+Searching in %TCIA_HOME% = 'C:\tcia'
+
+Searching for TCIA properties file in 'C:\tcia'.
+TCIA properties loaded from 'C:\tcia\tcia.properties'.
+API_KEY successfully loaded from properties file.
+
+
+1) Get Collection Values
+2) Get Modality Values
+3) Get Body Part Values
+4) Get Manufacturer Values
+5) Get Patient
+6) Patients By Modality
+7) Get Patient Study
+8) Get Series
+9) Get Series Size
+10) Get Image
+11) New Patients in Collection
+12) New Studies in Patient Collection
+13) Get SOP Instance UIDs
+14) Get Single Image
+15) Contents By Name
+16) Update Collection
+17) Update Patient
+18) Update All Collections (No Prompts)
+19) Update All Patients (No Prompts)
+
+
+Which action (Type 'q' to quit)? 18
+
+Searching in %TCIA_HOME% = 'C:\tcia'
+
+Searching for TCIA properties file in 'C:\tcia'.
+TCIA properties loaded from 'C:\tcia\tcia.properties'.
+Collections successfully loaded from properties file.
+
+Searching in %TCIA_HOME% = 'C:\tcia'
+Searching in 'C:\tcia'
+
+Current collection = 'Lung Phantom'
+Searching for directory with the name 'Lung Phantom'.
+Found directory: C:\tcia\Lung Phantom
+C:\tcia\Lung Phantom\
+
+Collecting remote series...
+https://services.cancerimagingarchive.net/services/v3/TCIA/query/getSeries?Collection=Lung+Phantom&format=json
+109 remote series found.
+
+Collecting local series...
+89 local series found.
+
+Downloading the 20 missing series to 'C:\tcia\Lung Phantom\'...
+
+Downloading 1.2.276.0.7230010.3.1.3.0.21757.1437749726.319319...
+https://services.cancerimagingarchive.net/services/v3/TCIA/query/getImage?SeriesInstanceUID=1.2.276.0.7230010.3.1.3.0.21757.1437749726.319319
+Extracting to C:\tcia\Lung Phantom\1.2.276.0.7230010.3.1.3.0.21757.1437749726.319319\
+Extracted 1.2.276.0.7230010.3.1.3.0.21757.1437749726.319319
+Files have been moved to C:\tcia\Lung Phantom\4482356\1.2.840.113745.101000.1186002.40721.8111.13846623\1.2.276.0.7230010.3.1.3.0.21757.1437749726.31
+9319
+
+Downloading 1.2.276.0.7230010.3.1.3.0.32115.1424660059.231627...
+https://services.cancerimagingarchive.net/services/v3/TCIA/query/getImage?SeriesInstanceUID=1.2.276.0.7230010.3.1.3.0.32115.1424660059.231627
+Extracting to C:\tcia\Lung Phantom\1.2.276.0.7230010.3.1.3.0.32115.1424660059.231627\
+Extracted 1.2.276.0.7230010.3.1.3.0.32115.1424660059.231627
+Files have been moved to C:\tcia\Lung Phantom\4482356\1.2.840.113745.101000.1186002.40721.8111.13846623\1.2.276.0.7230010.3.1.3.0.32115.1424660059.23
+1627
+
+Downloading 1.2.276.0.7230010.3.1.3.0.32464.1424660724.400766...
+https://services.cancerimagingarchive.net/services/v3/TCIA/query/getImage?SeriesInstanceUID=1.2.276.0.7230010.3.1.3.0.32464.1424660724.400766
+Extracting to C:\tcia\Lung Phantom\1.2.276.0.7230010.3.1.3.0.32464.1424660724.400766\
+Extracted 1.2.276.0.7230010.3.1.3.0.32464.1424660724.400766
+Files have been moved to C:\tcia\Lung Phantom\4482356\1.2.840.113745.101000.1186002.40721.8111.13846623\1.2.276.0.7230010.3.1.3.0.32464.1424660724.40
+0766
+
+Downloading 1.2.276.0.7230010.3.1.3.0.32604.1424661001.369942...
+https://services.cancerimagingarchive.net/services/v3/TCIA/query/getImage?SeriesInstanceUID=1.2.276.0.7230010.3.1.3.0.32604.1424661001.369942
+Extracting to C:\tcia\Lung Phantom\1.2.276.0.7230010.3.1.3.0.32604.1424661001.369942\
+Extracted 1.2.276.0.7230010.3.1.3.0.32604.1424661001.369942
+Files have been moved to C:\tcia\Lung Phantom\4482356\1.2.840.113745.101000.1186002.40721.8111.13846623\1.2.276.0.7230010.3.1.3.0.32604.1424661001.36
+9942
+
+Downloading 1.2.276.0.7230010.3.1.3.0.32669.1424671831.707479...
+https://services.cancerimagingarchive.net/services/v3/TCIA/query/getImage?SeriesInstanceUID=1.2.276.0.7230010.3.1.3.0.32669.1424671831.707479
+Extracting to C:\tcia\Lung Phantom\1.2.276.0.7230010.3.1.3.0.32669.1424671831.707479\
+Extracted 1.2.276.0.7230010.3.1.3.0.32669.1424671831.707479
+Files have been moved to C:\tcia\Lung Phantom\4482356\1.2.840.113745.101000.1186002.40721.8111.13846623\1.2.276.0.7230010.3.1.3.0.32669.1424671831.70
+7479
+
+Downloading 1.2.276.0.7230010.3.1.3.0.32739.1424684894.783234...
+https://services.cancerimagingarchive.net/services/v3/TCIA/query/getImage?SeriesInstanceUID=1.2.276.0.7230010.3.1.3.0.32739.1424684894.783234
+Extracting to C:\tcia\Lung Phantom\1.2.276.0.7230010.3.1.3.0.32739.1424684894.783234\
+Extracted 1.2.276.0.7230010.3.1.3.0.32739.1424684894.783234
+Files have been moved to C:\tcia\Lung Phantom\4482356\1.2.840.113745.101000.1186002.40721.8111.13846623\1.2.276.0.7230010.3.1.3.0.32739.1424684894.78
+3234
+
+Downloading 1.2.276.0.7230010.3.1.3.0.32981.1424692434.488952...
+https://services.cancerimagingarchive.net/services/v3/TCIA/query/getImage?SeriesInstanceUID=1.2.276.0.7230010.3.1.3.0.32981.1424692434.488952
+Extracting to C:\tcia\Lung Phantom\1.2.276.0.7230010.3.1.3.0.32981.1424692434.488952\
+Extracted 1.2.276.0.7230010.3.1.3.0.32981.1424692434.488952
+Files have been moved to C:\tcia\Lung Phantom\4482356\1.2.840.113745.101000.1186002.40721.8111.13846623\1.2.276.0.7230010.3.1.3.0.32981.1424692434.48
+8952
+
+Downloading 1.2.276.0.7230010.3.1.3.0.33074.1424692583.78137...
+https://services.cancerimagingarchive.net/services/v3/TCIA/query/getImage?SeriesInstanceUID=1.2.276.0.7230010.3.1.3.0.33074.1424692583.78137
+Extracting to C:\tcia\Lung Phantom\1.2.276.0.7230010.3.1.3.0.33074.1424692583.78137\
+Extracted 1.2.276.0.7230010.3.1.3.0.33074.1424692583.78137
+Files have been moved to C:\tcia\Lung Phantom\4482356\1.2.840.113745.101000.1186002.40721.8111.13846623\1.2.276.0.7230010.3.1.3.0.33074.1424692583.78
+137
+
+Downloading 1.2.276.0.7230010.3.1.3.0.33413.1424693150.449270...
+https://services.cancerimagingarchive.net/services/v3/TCIA/query/getImage?SeriesInstanceUID=1.2.276.0.7230010.3.1.3.0.33413.1424693150.449270
+Extracting to C:\tcia\Lung Phantom\1.2.276.0.7230010.3.1.3.0.33413.1424693150.449270\
+Extracted 1.2.276.0.7230010.3.1.3.0.33413.1424693150.449270
+Files have been moved to C:\tcia\Lung Phantom\4482356\1.2.840.113745.101000.1186002.40721.8111.13846623\1.2.276.0.7230010.3.1.3.0.33413.1424693150.44
+9270
+
+Downloading 1.2.276.0.7230010.3.1.3.0.33494.1424693300.5451...
+https://services.cancerimagingarchive.net/services/v3/TCIA/query/getImage?SeriesInstanceUID=1.2.276.0.7230010.3.1.3.0.33494.1424693300.5451
+Extracting to C:\tcia\Lung Phantom\1.2.276.0.7230010.3.1.3.0.33494.1424693300.5451\
+Extracted 1.2.276.0.7230010.3.1.3.0.33494.1424693300.5451
+Files have been moved to C:\tcia\Lung Phantom\4482356\1.2.840.113745.101000.1186002.40721.8111.13846623\1.2.276.0.7230010.3.1.3.0.33494.1424693300.54
+51
+
+Downloading 1.2.276.0.7230010.3.1.3.0.33514.1424693332.840704...
+https://services.cancerimagingarchive.net/services/v3/TCIA/query/getImage?SeriesInstanceUID=1.2.276.0.7230010.3.1.3.0.33514.1424693332.840704
+Extracting to C:\tcia\Lung Phantom\1.2.276.0.7230010.3.1.3.0.33514.1424693332.840704\
+Extracted 1.2.276.0.7230010.3.1.3.0.33514.1424693332.840704
+Files have been moved to C:\tcia\Lung Phantom\4482356\1.2.840.113745.101000.1186002.40721.8111.13846623\1.2.276.0.7230010.3.1.3.0.33514.1424693332.84
+0704
+
+Downloading 1.2.276.0.7230010.3.1.3.0.33554.1424693410.307122...
+https://services.cancerimagingarchive.net/services/v3/TCIA/query/getImage?SeriesInstanceUID=1.2.276.0.7230010.3.1.3.0.33554.1424693410.307122
+Extracting to C:\tcia\Lung Phantom\1.2.276.0.7230010.3.1.3.0.33554.1424693410.307122\
+Extracted 1.2.276.0.7230010.3.1.3.0.33554.1424693410.307122
+Files have been moved to C:\tcia\Lung Phantom\4482356\1.2.840.113745.101000.1186002.40721.8111.13846623\1.2.276.0.7230010.3.1.3.0.33554.1424693410.30
+7122
+
+Downloading 1.2.276.0.7230010.3.1.3.0.33594.1424693484.359510...
+https://services.cancerimagingarchive.net/services/v3/TCIA/query/getImage?SeriesInstanceUID=1.2.276.0.7230010.3.1.3.0.33594.1424693484.359510
+Extracting to C:\tcia\Lung Phantom\1.2.276.0.7230010.3.1.3.0.33594.1424693484.359510\
+Extracted 1.2.276.0.7230010.3.1.3.0.33594.1424693484.359510
+Files have been moved to C:\tcia\Lung Phantom\4482356\1.2.840.113745.101000.1186002.40721.8111.13846623\1.2.276.0.7230010.3.1.3.0.33594.1424693484.35
+9510
+
+Downloading 1.2.276.0.7230010.3.1.3.0.33676.1424693607.913924...
+https://services.cancerimagingarchive.net/services/v3/TCIA/query/getImage?SeriesInstanceUID=1.2.276.0.7230010.3.1.3.0.33676.1424693607.913924
+Extracting to C:\tcia\Lung Phantom\1.2.276.0.7230010.3.1.3.0.33676.1424693607.913924\
+Extracted 1.2.276.0.7230010.3.1.3.0.33676.1424693607.913924
+Files have been moved to C:\tcia\Lung Phantom\4482356\1.2.840.113745.101000.1186002.40721.8111.13846623\1.2.276.0.7230010.3.1.3.0.33676.1424693607.91
+3924
+
+Downloading 1.2.276.0.7230010.3.1.3.0.33785.1424693780.719180...
+https://services.cancerimagingarchive.net/services/v3/TCIA/query/getImage?SeriesInstanceUID=1.2.276.0.7230010.3.1.3.0.33785.1424693780.719180
+Extracting to C:\tcia\Lung Phantom\1.2.276.0.7230010.3.1.3.0.33785.1424693780.719180\
+Extracted 1.2.276.0.7230010.3.1.3.0.33785.1424693780.719180
+Files have been moved to C:\tcia\Lung Phantom\4482356\1.2.840.113745.101000.1186002.40721.8111.13846623\1.2.276.0.7230010.3.1.3.0.33785.1424693780.71
+9180
+
+Downloading 1.2.276.0.7230010.3.1.3.0.33909.1424694018.731110...
+https://services.cancerimagingarchive.net/services/v3/TCIA/query/getImage?SeriesInstanceUID=1.2.276.0.7230010.3.1.3.0.33909.1424694018.731110
+Extracting to C:\tcia\Lung Phantom\1.2.276.0.7230010.3.1.3.0.33909.1424694018.731110\
+Extracted 1.2.276.0.7230010.3.1.3.0.33909.1424694018.731110
+Files have been moved to C:\tcia\Lung Phantom\4482356\1.2.840.113745.101000.1186002.40721.8111.13846623\1.2.276.0.7230010.3.1.3.0.33909.1424694018.73
+1110
+
+Downloading 1.2.276.0.7230010.3.1.3.0.33929.1424694053.69084...
+https://services.cancerimagingarchive.net/services/v3/TCIA/query/getImage?SeriesInstanceUID=1.2.276.0.7230010.3.1.3.0.33929.1424694053.69084
+Extracting to C:\tcia\Lung Phantom\1.2.276.0.7230010.3.1.3.0.33929.1424694053.69084\
+Extracted 1.2.276.0.7230010.3.1.3.0.33929.1424694053.69084
+Files have been moved to C:\tcia\Lung Phantom\4482356\1.2.840.113745.101000.1186002.40721.8111.13846623\1.2.276.0.7230010.3.1.3.0.33929.1424694053.69
+084
+
+Downloading 1.2.276.0.7230010.3.1.3.0.34180.1424694502.380883...
+https://services.cancerimagingarchive.net/services/v3/TCIA/query/getImage?SeriesInstanceUID=1.2.276.0.7230010.3.1.3.0.34180.1424694502.380883
+Extracting to C:\tcia\Lung Phantom\1.2.276.0.7230010.3.1.3.0.34180.1424694502.380883\
+Extracted 1.2.276.0.7230010.3.1.3.0.34180.1424694502.380883
+Files have been moved to C:\tcia\Lung Phantom\4482356\1.2.840.113745.101000.1186002.40721.8111.13846623\1.2.276.0.7230010.3.1.3.0.34180.1424694502.38
+0883
+
+Downloading 1.2.276.0.7230010.3.1.3.0.34220.1424694565.324590...
+https://services.cancerimagingarchive.net/services/v3/TCIA/query/getImage?SeriesInstanceUID=1.2.276.0.7230010.3.1.3.0.34220.1424694565.324590
+Extracting to C:\tcia\Lung Phantom\1.2.276.0.7230010.3.1.3.0.34220.1424694565.324590\
+Extracted 1.2.276.0.7230010.3.1.3.0.34220.1424694565.324590
+Files have been moved to C:\tcia\Lung Phantom\4482356\1.2.840.113745.101000.1186002.40721.8111.13846623\1.2.276.0.7230010.3.1.3.0.34220.1424694565.32
+4590
+
+Downloading 1.2.840.113619.2.55.3.1930041893.617.1308206442.326.4...
+https://services.cancerimagingarchive.net/services/v3/TCIA/query/getImage?SeriesInstanceUID=1.2.840.113619.2.55.3.1930041893.617.1308206442.326.4
+Extracting to C:\tcia\Lung Phantom\1.2.840.113619.2.55.3.1930041893.617.1308206442.326.4\
+Extracted 1.2.840.113619.2.55.3.1930041893.617.1308206442.326.4
+Files have been moved to C:\tcia\Lung Phantom\4482356\1.2.840.113745.101000.1186002.40721.8111.13846623\1.2.840.113619.2.55.3.1930041893.617.13082064
+42.326.4
+
+20 new series have been added to your collection.
+Update is complete for collection 'Lung Phantom'
+
+Current collection = 'RIDER Breast MRI'
+Searching for directory with the name 'RIDER Breast MRI'.
+Found directory: C:\tcia\RIDER Breast MRI
+C:\tcia\RIDER Breast MRI\
+
+Collecting remote series...
+https://services.cancerimagingarchive.net/services/v3/TCIA/query/getSeries?Collection=RIDER+Breast+MRI&format=json
+40 remote series found.
+
+Collecting local series...
+32 local series found.
+
+Downloading the 8 missing series to 'C:\tcia\RIDER Breast MRI\'...
+
+Downloading 1.3.6.1.4.1.9328.50.7.148672602024447894354071561047112702722...
+https://services.cancerimagingarchive.net/services/v3/TCIA/query/getImage?SeriesInstanceUID=1.3.6.1.4.1.9328.50.7.14867260202444789435407156104711270
+2722
+Extracting to C:\tcia\RIDER Breast MRI\1.3.6.1.4.1.9328.50.7.148672602024447894354071561047112702722\
+Extracted 1.3.6.1.4.1.9328.50.7.148672602024447894354071561047112702722
+Files have been moved to C:\tcia\RIDER Breast MRI\RIDER-1125105682\1.3.6.1.4.1.9328.50.7.311404225345463417485233488684291825227\1.3.6.1.4.1.9328.50.
+7.148672602024447894354071561047112702722
+
+Downloading 1.3.6.1.4.1.9328.50.7.191673935644190628295928690330231030013...
+https://services.cancerimagingarchive.net/services/v3/TCIA/query/getImage?SeriesInstanceUID=1.3.6.1.4.1.9328.50.7.19167393564419062829592869033023103
+0013
+Extracting to C:\tcia\RIDER Breast MRI\1.3.6.1.4.1.9328.50.7.191673935644190628295928690330231030013\
+Extracted 1.3.6.1.4.1.9328.50.7.191673935644190628295928690330231030013
+Files have been moved to C:\tcia\RIDER Breast MRI\RIDER-2217584661\1.3.6.1.4.1.9328.50.7.259395779545810898886784449342040659687\1.3.6.1.4.1.9328.50.
+7.191673935644190628295928690330231030013
+
+Downloading 1.3.6.1.4.1.9328.50.7.230119312665956757099613872111624026018...
+https://services.cancerimagingarchive.net/services/v3/TCIA/query/getImage?SeriesInstanceUID=1.3.6.1.4.1.9328.50.7.23011931266595675709961387211162402
+6018
+Extracting to C:\tcia\RIDER Breast MRI\1.3.6.1.4.1.9328.50.7.230119312665956757099613872111624026018\
+Extracted 1.3.6.1.4.1.9328.50.7.230119312665956757099613872111624026018
+Files have been moved to C:\tcia\RIDER Breast MRI\RIDER-2217584661\1.3.6.1.4.1.9328.50.7.25822134974772330945514880449913240573\1.3.6.1.4.1.9328.50.7
+.230119312665956757099613872111624026018
+
+Downloading 1.3.6.1.4.1.9328.50.7.249404516468709022103298368762340791245...
+https://services.cancerimagingarchive.net/services/v3/TCIA/query/getImage?SeriesInstanceUID=1.3.6.1.4.1.9328.50.7.24940451646870902210329836876234079
+1245
+Extracting to C:\tcia\RIDER Breast MRI\1.3.6.1.4.1.9328.50.7.249404516468709022103298368762340791245\
+Extracted 1.3.6.1.4.1.9328.50.7.249404516468709022103298368762340791245
+Files have been moved to C:\tcia\RIDER Breast MRI\RIDER-1125105682\1.3.6.1.4.1.9328.50.7.166645751600387952750352410320599553837\1.3.6.1.4.1.9328.50.
+7.249404516468709022103298368762340791245
+
+Downloading 1.3.6.1.4.1.9328.50.7.259598666695126728515803051266073690786...
+https://services.cancerimagingarchive.net/services/v3/TCIA/query/getImage?SeriesInstanceUID=1.3.6.1.4.1.9328.50.7.25959866669512672851580305126607369
+0786
+Extracting to C:\tcia\RIDER Breast MRI\1.3.6.1.4.1.9328.50.7.259598666695126728515803051266073690786\
+Extracted 1.3.6.1.4.1.9328.50.7.259598666695126728515803051266073690786
+Files have been moved to C:\tcia\RIDER Breast MRI\RIDER-2217584661\1.3.6.1.4.1.9328.50.7.25822134974772330945514880449913240573\1.3.6.1.4.1.9328.50.7
+.259598666695126728515803051266073690786
+
+Downloading 1.3.6.1.4.1.9328.50.7.261772317324041365541450388603508531852...
+https://services.cancerimagingarchive.net/services/v3/TCIA/query/getImage?SeriesInstanceUID=1.3.6.1.4.1.9328.50.7.26177231732404136554145038860350853
+1852
+Extracting to C:\tcia\RIDER Breast MRI\1.3.6.1.4.1.9328.50.7.261772317324041365541450388603508531852\
+Extracted 1.3.6.1.4.1.9328.50.7.261772317324041365541450388603508531852
+Files have been moved to C:\tcia\RIDER Breast MRI\RIDER-2217584661\1.3.6.1.4.1.9328.50.7.25822134974772330945514880449913240573\1.3.6.1.4.1.9328.50.7
+.261772317324041365541450388603508531852
+
+Downloading 1.3.6.1.4.1.9328.50.7.29171872502655886851585593434125289620...
+https://services.cancerimagingarchive.net/services/v3/TCIA/query/getImage?SeriesInstanceUID=1.3.6.1.4.1.9328.50.7.29171872502655886851585593434125289
+620
+Extracting to C:\tcia\RIDER Breast MRI\1.3.6.1.4.1.9328.50.7.29171872502655886851585593434125289620\
+Extracted 1.3.6.1.4.1.9328.50.7.29171872502655886851585593434125289620
+Files have been moved to C:\tcia\RIDER Breast MRI\RIDER-5423859857\1.3.6.1.4.1.9328.50.7.176646703930190023758817646227898154473\1.3.6.1.4.1.9328.50.
+7.29171872502655886851585593434125289620
+
+Downloading 1.3.6.1.4.1.9328.50.7.321446612661984907899823865234605992349...
+https://services.cancerimagingarchive.net/services/v3/TCIA/query/getImage?SeriesInstanceUID=1.3.6.1.4.1.9328.50.7.32144661266198490789982386523460599
+2349
+Extracting to C:\tcia\RIDER Breast MRI\1.3.6.1.4.1.9328.50.7.321446612661984907899823865234605992349\
+Extracted 1.3.6.1.4.1.9328.50.7.321446612661984907899823865234605992349
+Files have been moved to C:\tcia\RIDER Breast MRI\RIDER-2217584661\1.3.6.1.4.1.9328.50.7.25822134974772330945514880449913240573\1.3.6.1.4.1.9328.50.7
+.321446612661984907899823865234605992349
+
+8 new series have been added to your collection.
+Update is complete for collection 'RIDER Breast MRI'
+
+Update request is complete.
+
+
+1) Get Collection Values
+2) Get Modality Values
+3) Get Body Part Values
+4) Get Manufacturer Values
+5) Get Patient
+6) Patients By Modality
+7) Get Patient Study
+8) Get Series
+9) Get Series Size
+10) Get Image
+11) New Patients in Collection
+12) New Studies in Patient Collection
+13) Get SOP Instance UIDs
+14) Get Single Image
+15) Contents By Name
+16) Update Collection
+17) Update Patient
+18) Update All Collections (No Prompts)
+19) Update All Patients (No Prompts)
+
+
+Which action (Type 'q' to quit)? q
+Thank you.  You have exited the TCIA Request Application.
+
+
+
+hilfikerp@FR-N-S079396 C:\temp
+>
