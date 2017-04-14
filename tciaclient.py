@@ -247,7 +247,7 @@ class TCIAClient:
         for (path, dirs, files) in os.walk(rootDirectory, topdown=True, onerror=False):
             for name in files: #Read the current directory
                 if name.endswith('.dcm'): #Check for .dcm files
-                    dcmfile = dicom.read_file(path + "\\" + name) #if found, then read data
+                    dcmfile = dicom.read_file(os.path.join(path, name)) #if found, then read data
                     print(type(dcmfile))
                     #print (dcmfile.SeriesInstanceUID)
                     #print(dcmfile.SOPInstanceUID)
@@ -260,26 +260,33 @@ class TCIAClient:
         for (path, dirs, files) in os.walk(downloadPath, topdown=True, onerror=False):
             for name in files: #Read the current directory
                 if name.endswith('.dcm'): #Check for .dcm files
-                    dcmfile = dicom.read_file(path + "\\" + name) #if found, then read data
+                    dcmfile = dicom.read_file(os.path.join(path, name)) #if found, then read data
                     return rootDirectory + dcmfile.PatientID + "\\" + dcmfile.StudyInstanceUID + "\\"
               
+    def get_patient_series_path(self, rootDirectory = None, downloadPath = None):   
+        for (path, dirs, files) in os.walk(downloadPath, topdown=True, onerror=False):
+            for name in files: #Read the current directory
+                if name.endswith('.dcm'): #Check for .dcm files
+                    dcmfile = dicom.read_file(os.path.join(path, name)) #if found, then read data
+                    return rootDirectory + dcmfile.StudyInstanceUID + "\\"
     
     def get_local_series(self, rootDirectory = None):   
-        localSeries = []       
+        localSeries = []   
+        rootDirectory = os.path.join(rootDirectory, '') 
         for (path, dirs, files) in os.walk(rootDirectory, topdown=True, onerror=False):
             for name in files: #Read the current directory
                 if name.endswith('.dcm'): #Check for .dcm files
-                    dcmfile = dicom.read_file(path + "\\" + name) #if found, then read data
+                    dcmfile = dicom.read_file(os.path.join(path, name)) #if found, then read data
                     localSeries.append(dcmfile.SeriesInstanceUID)
                     break
         localSeries = list(set(localSeries)) #Remove duplicates from list
         localSeries.sort()
         return localSeries
     
-    def get_remote_series(self, collection = None):   
+    def get_remote_series(self, collection = None, patientID = None, studyInstanceUID = None):   
         response = self.get_series(collection = collection,
-                                   studyInstanceUid = None, 
-                                   patientId = None,
+                                   studyInstanceUid = studyInstanceUID, 
+                                   patientId = patientID,
                                    seriesInstanceUid = None,
                                    modality = None,
                                    bodyPartExamined = None,
@@ -294,7 +301,7 @@ class TCIAClient:
         remoteSeries.sort()
         return remoteSeries
     
-    def downloadMissing(self, rootDirectory = "./", seriesInstanceUids = None):   
+    def downloadMissing(self, rootDirectory = None, seriesInstanceUids = None):   
         for seriesInstanceUid in seriesInstanceUids:
             response = self.get_sop_instance_uids(seriesInstanceUid)
             responseSopObj = json.load(response)
@@ -317,14 +324,14 @@ class TCIAClient:
                 print('Downloading ' + str(idx) + ' of ' + str(numberOfImages) + '...')
 
                 #downloadPath = rootDirectory + series[PatientID] + '/' + series[StudyDate] + '-' + series[StudyDescription] + '/' + series[SeriesDate] + '-' + series[SeriesDescription] + '/'
-                downloadPath = rootDirectory + series["SeriesDate"] + '_' + series["SeriesDescription"] + '\\'
+                downloadPath = rootDirectory + series["SeriesDate"] + '_' + series["SeriesDescription"] + "\\"
                 self.get_single_image(SeriesInstanceUID = seriesInstanceUid, 
                                       SOPInstanceUID = sopInstanceUid, 
                                       downloadPath = downloadPath, 
                                       fileName = format(idx, '06d') + '.dcm')
         return len(seriesInstanceUids)
     
-    def downloadMissingZipAndExtract(self, rootDirectory = "./", seriesInstanceUids = None):   
+    def downloadAndExtractToCollection(self, rootDirectory = None, seriesInstanceUids = None):   
         for seriesInstanceUid in seriesInstanceUids:          
             print("\nDownloading " + seriesInstanceUid + "...")
             downloadPath = rootDirectory + seriesInstanceUid + "\\"
@@ -333,7 +340,7 @@ class TCIAClient:
                            downloadPath = self.safe_open_w(path = downloadPath), 
                            zipFileName = zipFileName)
             zipf = os.path.join(downloadPath, zipFileName)
-            print("Extracting to " + downloadPath)
+            print("Extracting to " + downloadPath) 
             with zipfile.ZipFile(zipf, "r") as z:
               z.extractall(downloadPath + seriesInstanceUid)
             os.remove(zipf)
@@ -347,14 +354,38 @@ class TCIAClient:
 
         return len(seriesInstanceUids)
     
-    def update_collection(self, rootDirectory = "./", collection = None):
+    def downloadAndExtractToPatient(self, rootDirectory = None, seriesInstanceUids = None):   
+        for seriesInstanceUid in seriesInstanceUids:          
+            print("\nDownloading " + seriesInstanceUid + "...")
+            downloadPath = rootDirectory + seriesInstanceUid + "\\"
+            zipFileName = seriesInstanceUid + '.zip'
+            self.get_image(seriesInstanceUid = seriesInstanceUid, 
+                           downloadPath = self.safe_open_w(path = downloadPath), 
+                           zipFileName = zipFileName)
+            zipf = os.path.join(downloadPath, zipFileName)
+            print("Extracting to " + downloadPath) 
+            with zipfile.ZipFile(zipf, "r") as z:
+              z.extractall(downloadPath + seriesInstanceUid)
+            os.remove(zipf)
+            print("Extracted " + seriesInstanceUid)
+            
+            seriesPath = self.get_patient_series_path(rootDirectory = rootDirectory, downloadPath = downloadPath)
+            self.safe_open_w(path = seriesPath)
+            destPath = shutil.move(src = downloadPath + seriesInstanceUid, dst = seriesPath)
+            shutil.rmtree(downloadPath)
+            print("Files have been moved to " + destPath)
+
+        return len(seriesInstanceUids)
+    
+    def find_missing_series_collection(self, rootDirectory = None, collection = None):
         try:
+            rootDirectory = os.path.join(rootDirectory,'')
             if collection == None : #If user doesn't specify a collection, find it in a DCM file 
                 #collection = self.get_collection(rootDirectory)
                 return None
                 
             print("\nCollecting remote series...")
-            remoteSeries = self.get_remote_series(collection)
+            remoteSeries = self.get_remote_series(collection = collection)
             print(str(len(remoteSeries)) + " remote series found.")
             
             print("\nCollecting local series...")
@@ -364,9 +395,31 @@ class TCIAClient:
             missingSeries = list(set(remoteSeries) - set(localSeries))
             missingSeries.sort()
             
-            print("\n" + str(self.downloadMissingZipAndExtract(rootDirectory = rootDirectory, seriesInstanceUids = missingSeries)) + " new series have been added to your collection.")
+            return missingSeries
             
         except urllib.error.HTTPError as err:
             print("Error executing program:\nError Code: ", str(err.code), "\nMessage:", err.read())
+
+    
+    def find_missing_series_patient(self, rootDirectory = None, patientID = None):
+        try:
+            rootDirectory = os.path.join(rootDirectory,'')
+            if patientID == None : #If user doesn't specify a collection, find it in a DCM file 
+                #collection = self.get_collection(rootDirectory)
+                return None
+                
+            print("\nCollecting remote series...")
+            remoteSeries = self.get_remote_series(patientID = patientID)
+            print(str(len(remoteSeries)) + " remote series found.")
             
-        return 'true'
+            print("\nCollecting local series...")
+            localSeries = self.get_local_series(rootDirectory = rootDirectory)
+            print(str(len(localSeries)) + " local series found.\n")
+            
+            missingSeries = list(set(remoteSeries) - set(localSeries))
+            missingSeries.sort()
+
+            return missingSeries
+            
+        except urllib.error.HTTPError as err:
+            print("Error executing program:\nError Code: ", str(err.code), "\nMessage:", err.read())
