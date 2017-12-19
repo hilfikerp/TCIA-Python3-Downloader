@@ -261,14 +261,14 @@ class TCIAClient:
             for name in files: #Read the current directory
                 if name.endswith('.dcm'): #Check for .dcm files
                     dcmfile = dicom.read_file(os.path.join(path, name)) #if found, then read data
-                    return rootDirectory + dcmfile.PatientID + "\\" + dcmfile.StudyInstanceUID + "\\"
+                    return os.path.join(rootDirectory, dcmfile.PatientID, dcmfile.StudyInstanceUID, '')
               
     def get_patient_series_path(self, rootDirectory = None, downloadPath = None):   
         for (path, dirs, files) in os.walk(downloadPath, topdown=True, onerror=False):
             for name in files: #Read the current directory
                 if name.endswith('.dcm'): #Check for .dcm files
                     dcmfile = dicom.read_file(os.path.join(path, name)) #if found, then read data
-                    return rootDirectory + dcmfile.StudyInstanceUID + "\\"
+                    return os.path.join(rootDirectory, dcmfile.StudyInstanceUID, '')
     
     def get_local_series(self, rootDirectory = None):   
         localSeries = []   
@@ -322,9 +322,7 @@ class TCIAClient:
             numberOfImages = len(sopInstanceUids)
             for idx, sopInstanceUid in enumerate(sopInstanceUids):
                 print('Downloading ' + str(idx) + ' of ' + str(numberOfImages) + '...')
-
-                #downloadPath = rootDirectory + series[PatientID] + '/' + series[StudyDate] + '-' + series[StudyDescription] + '/' + series[SeriesDate] + '-' + series[SeriesDescription] + '/'
-                downloadPath = rootDirectory + series["SeriesDate"] + '_' + series["SeriesDescription"] + "\\"
+                downloadPath = os.path.join(rootDirectory, series["SeriesDate"] + '_' + series["SeriesDescription"], '')
                 self.get_single_image(SeriesInstanceUID = seriesInstanceUid, 
                                       SOPInstanceUID = sopInstanceUid, 
                                       downloadPath = downloadPath, 
@@ -334,7 +332,7 @@ class TCIAClient:
     def downloadAndExtractToCollection(self, rootDirectory = None, seriesInstanceUids = None):   
         for seriesInstanceUid in seriesInstanceUids:          
             print("\nDownloading " + seriesInstanceUid + "...")
-            downloadPath = rootDirectory + seriesInstanceUid + "\\"
+            downloadPath = os.path.join(rootDirectory, seriesInstanceUid, '')
             zipFileName = seriesInstanceUid + '.zip'
             self.get_image(seriesInstanceUid = seriesInstanceUid, 
                            downloadPath = self.safe_open_w(path = downloadPath), 
@@ -357,7 +355,7 @@ class TCIAClient:
     def downloadAndExtractToPatient(self, rootDirectory = None, seriesInstanceUids = None):   
         for seriesInstanceUid in seriesInstanceUids:          
             print("\nDownloading " + seriesInstanceUid + "...")
-            downloadPath = rootDirectory + seriesInstanceUid + "\\"
+            downloadPath = os.path.join(rootDirectory, seriesInstanceUid, '')
             zipFileName = seriesInstanceUid + '.zip'
             self.get_image(seriesInstanceUid = seriesInstanceUid, 
                            downloadPath = self.safe_open_w(path = downloadPath), 
